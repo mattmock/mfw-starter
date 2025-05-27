@@ -1,60 +1,25 @@
-# mfw-starter (Express)
+# mfw-starter
 
-A minimal server-rendered web app starter that uses [`mfw`](https://github.com/mattmock/mfw), a lightweight, platform-independent SSR framework.
+This is a minimal starter project using the [mfw](https://github.com/mattmock/mfw) microframework with plain `.html` files as views.
 
----
-
-## 🚀 Quick Start
+## 🔧 Setup
 
 ```bash
-# Clone this starter project
 npx degit mattmock/mfw-starter my-app
 cd my-app
 
-# Add mfw as a local folder (outside this repo)
+# Add mfw (not included)
 npx degit mattmock/mfw mfw
 
-# Install dependencies and run
 npm install
 npm run dev
 ```
 
----
+Then open [http://localhost:3000](http://localhost:3000)
 
-## 📁 Folder Structure
+## 📂 Structure
 
-```
-.
-├── mfw/                 # pulled separately with degit (not included here)
-├── server.js            # Express entry point
-├── ui/
-│   ├── views/           # Route-based views (LandingPage.js, My404Page.js)
-│   ├── components/      # Shared layout (Layout.js)
-│   └── public/          # Static assets (CSS, images, etc.)
-├── package.json
-└── README.md
-```
-
----
-
-## 🧠 How it Works
-
-- Views are plain `.js` modules exporting HTML string functions
-- `getRouteMap()` reads the view directory and maps route paths
-- `handleRoute()` takes a route and returns rendered HTML
-- Express serves static files and uses mfw to resolve routes
-
----
-
-## 📝 Notes
-
-- `mfw` is not included in this repo. It should be cloned separately into `./mfw`
-- This allows you to always stay up to date with the latest version of `mfw`
-- You can replace Express with any other server later (e.g. Node http, Bun, Python adapter)
-
----
-
-## 📎 Links
-
-- [mfw on GitHub](https://github.com/mattmock/mfw)
-- [mfw-starter (this repo)](https://github.com/mattmock/mfw-starter)
+- `ui/views/` — Native HTML views
+- `ui/public/` — Static assets (CSS, images, etc.)
+- `mfw/` — Core framework (added manually)
+- `server.js` — Express + mfw integration

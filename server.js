@@ -7,12 +7,15 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const viewPath = path.join(__dirname, 'ui/views');
 
-const routes = getRouteMap(viewPath, {
-  root: 'LandingPage',
-  notFound: 'My404Page'
+const routes = await getRouteMap(viewPath, {
+  root: 'index',
+  notFound: '404'
 });
 
-const render = handleRoute(routes, viewPath);
+const render = handleRoute(routes, viewPath, {
+  props: { siteTitle: 'My HTML mfw App' },
+  errorView: 'error'
+});
 
 app.use(express.static('ui/public'));
 

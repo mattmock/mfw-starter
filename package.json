@@ -1,5 +1,5 @@
 {
-  "name": "mfw-starter-express",
+  "name": "mfw-starter-html",
   "type": "module",
   "scripts": {
     "dev": "node server.js"
