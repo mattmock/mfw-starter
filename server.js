@@ -1,29 +1,20 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { getRouteMap, handleRoute } from './mfw/index.js';
+import express from "express";
+import { renderPage } from "mfw"; // Assumes mfw is installed or linked
+import path from "path";
 
 const app = express();
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const viewPath = path.join(__dirname, 'ui/views');
+const PORT = process.env.PORT || 3000;
 
-const routes = await getRouteMap(viewPath, {
-  root: 'index',
-  notFound: '404'
-});
+app.use("/public", express.static(path.join(process.cwd(), "public")));
 
-const render = handleRoute(routes, viewPath, {
-  props: { siteTitle: 'My HTML mfw App' },
-  errorView: 'error'
-});
-
-app.use(express.static('ui/public'));
-
-app.get('*', async (req, res) => {
-  const html = await render(req.path);
+app.get("/", async (req, res) => {
+  const html = await renderPage("home", { title: "Home" }, {
+    layout: "layout",
+    cssPath: '<link rel="stylesheet" href="/public/home.css">'
+  });
   res.send(html);
 });
 
-app.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
